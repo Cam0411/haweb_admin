@@ -117,7 +117,7 @@ const CreateProductContent = () => {
           <button
             type="submit"
             onClick={ openModal}
-            className="bg-[#b5262a] text-white py-2 px-4 rounded font-bold  focus:outline-none"
+            className="bg-[#b5262a] text-white py-2 px-4 rounded font-bold  focus:outline-none shadow-lg"
           >
             Tạo sản phẩm
           </button>

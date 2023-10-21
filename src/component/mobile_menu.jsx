@@ -1,6 +1,7 @@
 import {Link,useLocation} from  "react-router-dom";
 import {AiOutlineMenu} from "react-icons/ai"
 import {useState} from "react";
+
 const MenuMobile = () => {
     const [modal,setModal] = useState(false);
     function openModal (){
@@ -25,17 +26,20 @@ const MenuMobile = () => {
           </div>
           {
             modal ? (
-           <div class="fixed bg-[#0004] inset-0 " onClick={closeModal}>
+           <div class="fixed  inset-0 z-30" >
              <div class="w-[80%] bg-white h-[100%]">
              <h1 class="font-black  text-[45px] text-[#a3262a] p-3">Hà Shop</h1>
              <ul class="p-3 mt-5">
-             <Link to="/"> <li class="font-bold mb-2 text-[18px]">Trang chủ</li> </Link>
-             <Link to="/displayProduct" > <li class="font-bold mb-2 text-[18px]">Xem trang sản phẩm</li> </Link>
-            <Link to="/createProduct"> <li class="font-bold mb-2 text-[18px]">Tạo sản phẩm</li> </Link>
-               <li class="font-bold mb-2 text-[18px]">Thống kê</li>
+             <Link to="/"> <li class="font-bold mb-4 text-[18px]">Trang chủ</li> </Link>
+             <Link to="/displayProduct" > <li class="font-bold mb-4 text-[18px]">Xem trang sản phẩm</li> </Link>
+            <Link to="/createProduct"> <li class="font-bold mb-4 text-[18px]">Tạo sản phẩm</li> </Link>
+               <li class="font-bold mb-4 text-[18px]">Thống kê</li>
              </ul>
              </div>
+             <div class="bg-[#0004] w-[20%] fixed z-10 top-0 right-0 h-full cursor-pointer" onClick={closeModal}>
+            </div>
           </div>
+          
             ) : ""
           }
         

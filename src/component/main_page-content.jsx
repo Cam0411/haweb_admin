@@ -2,8 +2,25 @@ import {AiOutlineSearch,AiOutlineBell} from "react-icons/ai"
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
-import { useState } from "react";
-const Mainpage = () => {
+import { useState,useEffect } from "react";
+import axios from 'axios';
+const Mainpage =   () => {
+  const [product,setProducts] = useState();
+   const ApiHaweb = `https://haweb-api.onrender.com/api/product`;
+   useEffect(() => {
+    // Define the API URL for getting all products
+     // Replace with your API URL
+
+    // Use Axios to fetch the products
+    axios.get(ApiHaweb)
+      .then((response) => {
+        // Update the products state with the fetched data
+        setProducts(response.data);
+      })
+      .catch((error) => {
+        console.error('Error fetching products:', error);
+      });
+  }, []);
 
     return (
         <div class="col-span-5 xl:col-span-4 p-3 mt-[150px] xl:mt-0">
@@ -33,11 +50,11 @@ const Mainpage = () => {
              </div>
            <div class="col-span-2 md:col-span-1 min-h-[150px] md:h-[0] bg-white shadow-lg md:ml-2  ml-0   rounded p-2">
              <p class="font-bold">Số lượng hàng</p>
-             <p class="text-[28px] font-bold">0</p>
+             <p class="text-[28px] font-bold">{product ? product.length : 0}</p>
            </div>
            <div class="col-span-2 md:col-span-1 min-h-[150px] md:h-[0] bg-white shadow-lg ml-2 rounded p-2">
-             <p class="font-bold">Doanh thu</p>
-             <p class="text-[28px] font-bold">0</p>
+             <p class="font-bold">Phân Loại</p>
+             <p class="text-[28px] font-bold">4</p>
             </div>
        
         </div>
