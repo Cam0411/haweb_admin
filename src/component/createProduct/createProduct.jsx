@@ -11,6 +11,9 @@ const CreateProductContent = () => {
         price: '',
         category: '',
         photo: '',
+        material:'',
+        codeProduct:'',
+        size:'',
       });
      const [modal,setModal] = useState(false);
      const [error,setError] = useState(false)
@@ -41,7 +44,7 @@ const CreateProductContent = () => {
       };
    
     return (
-        <div class="col-span-5 xl:col-span-4 p-3  mt-[150px] xl:mt-0">
+        <div class="col-span-5 xl:col-span-4 p-3  mt-[150px] xl:mt-0 h-auto">
         <div class="bg-white shadow-xl h-[50px] sm:ml-5 sm:mr-5 ml-0 rounded-lg flex justify-between items-center p-2">
             <div class="w-[50%] flex justify-center">
              <AiOutlineSearch 
@@ -76,6 +79,19 @@ const CreateProductContent = () => {
         </div>
         <div className="mb-4">
           <label htmlFor="description" className="block text-gray-600 font-medium mb-2">
+            Mã sản phẩm
+          </label>
+          <input
+            id="codeProduct"
+            name="codeProduct"
+            value={productData.codeProduct}
+            onChange={handleChange}
+            className="w-full px-2 py-2 border rounded-md"
+          ></input>
+        </div>
+
+        <div className="mb-4">
+          <label htmlFor="description" className="block text-gray-600 font-medium mb-2">
             Thông tin sản phẩm
           </label>
           <textarea
@@ -86,7 +102,31 @@ const CreateProductContent = () => {
             className="w-full px-2 py-2 border rounded-md"
           ></textarea>
         </div>
-    
+        <div className="mb-4">
+          <label htmlFor="description" className="block text-gray-600 font-medium mb-2">
+            Chất liệu
+          </label>
+          <input
+            id="material"
+            name="material"
+            value={productData.material}
+            onChange={handleChange}
+            className="w-full px-2 py-2 border rounded-md"
+          ></input>
+        </div>
+        <div className="mb-4">
+          <label htmlFor="title" className="block  font-medium mb-2">
+            Kích thước 
+          </label>
+          <input
+            type="text"
+            id="size"
+            name="size"
+            value={productData.size}
+            onChange={handleChange}
+            className="w-full px-2 py-2 border rounded-md"
+          />
+        </div>
         <div className="mb-4">
           <label htmlFor="category" className="block text-gray-600 font-medium mb-2">
             Phân loại sản phẩm

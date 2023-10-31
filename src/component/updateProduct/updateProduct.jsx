@@ -91,6 +91,19 @@ const UpdateProducts = () => {
         </div>
         <div className="mb-4">
           <label htmlFor="description" className="block text-gray-600 font-medium mb-2">
+            Mã sản phẩm
+          </label>
+          <input
+            id="codeProduct"
+            name="codeProduct"
+            value={productData.codeProduct}
+            onChange={handleChange}
+            className="w-full px-2 py-2 border rounded-md"
+          ></input>
+        </div>
+
+        <div className="mb-4">
+          <label htmlFor="description" className="block text-gray-600 font-medium mb-2">
             Thông tin sản phẩm
           </label>
           <textarea
@@ -100,6 +113,31 @@ const UpdateProducts = () => {
             onChange={handleChange}
             className="w-full px-2 py-2 border rounded-md"
           ></textarea>
+        </div>
+        <div className="mb-4">
+          <label htmlFor="description" className="block text-gray-600 font-medium mb-2">
+            Chất liệu
+          </label>
+          <input
+            id="material"
+            name="material"
+            value={productData.material}
+            onChange={handleChange}
+            className="w-full px-2 py-2 border rounded-md"
+          ></input>
+        </div>
+        <div className="mb-4">
+          <label htmlFor="title" className="block  font-medium mb-2">
+            Kích thước 
+          </label>
+          <input
+            type="text"
+            id="size"
+            name="size"
+            value={productData.size}
+            onChange={handleChange}
+            className="w-full px-2 py-2 border rounded-md"
+          />
         </div>
         <div className="mb-4">
           <label htmlFor="category" className="block text-gray-600 font-medium mb-2">
@@ -131,9 +169,9 @@ const UpdateProducts = () => {
           <button
             type="submit"
             onClick={ openModal}
-            className="bg-[#b5262a] text-white py-2 px-4 rounded font-bold  focus:outline-none"
+            className="bg-[#b5262a] text-white py-2 px-4 rounded font-bold  focus:outline-none shadow-lg"
           >
-            Cập nhật sản phẩm
+            Tạo sản phẩm
           </button>
         </div>
       </form>

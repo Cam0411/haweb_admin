@@ -7,17 +7,19 @@ import {Link} from "react-router-dom"
 import axios from "axios"
 import { List } from 'react-content-loader'
 import { LazyLoadImage } from 'react-lazy-load-image-component';
+
 const DisplayProducts = () => {
     const [products,setProduct] = useState();
-    const [category,setCategory] = useState("treo-tuong");
+    const [category,setCategory] = useState("li-xi");
     const [modal,setModal] = useState(false);
+    const [popUp,setPopup] = useState(false);
     function toggleMenu() {
       setModal(!modal);
     }
     const [searchProduct,setSearchProduct] = useState("");
     const [checkSearch,setCheckSearch] = useState(false);
     // main Api
-    const apiHaweb = `https://haweb-api.onrender.com/api/product`;
+    const apiHaweb = `http://127.0.0.1:8000/api/product`;
     useEffect(() => {
     const apiHawebcategory = `${apiHaweb}/category/${category}`;
     axios.get(`${apiHawebcategory}`)
@@ -70,7 +72,22 @@ const DisplayProducts = () => {
         behavior: 'smooth' // This triggers smooth scrolling
       });
     };
-   
+   // Function to delete all products
+const deleteAllProduct = async (slug) => {
+  axios.delete(`http://127.0.0.1:8000/api/product`)
+  .then((response) => {
+      if (response.status === 200) {
+        // Product was deleted successfully, update the state
+        setProduct(products.filter((product) => product.slug !== slug));
+        
+      }
+      window.location.reload();
+    })
+    .catch((error) => {
+      console.error('Error deleting product:', error);
+    });
+};
+
 
     return (
         <div class="col-span-5 xl:col-span-4 p-3 h-auto  mt-[150px] xl:mt-0">
@@ -92,24 +109,24 @@ const DisplayProducts = () => {
               </ul>
             </div>
         </div>
-        <div class="bg-white shadow-xl mt-10 min-h-[400px] sm:ml-5 sm:mr-5 ml-0 mr-0 rounded p-3">
+        <div class="bg-white shadow-xl mt-10 min-h-[400px] sm:ml-5 sm:mr-5 ml-0 mr-0 rounded p-3 relative">
           <h1 class="font-bold text-[22px] border-b-2 pb-2 border-[#000] " >Mục Sản phẩm</h1>
           <div class="w-full flex justify-between items-center flex-col xl:flex-row ">
           <ul class="hidden mt-5 font-medium md:flex ">
-             <li class={`mr-5 border-2 py-2 px-5 cursor-pointer text-center shadow-lg ${category === "treo-tuong" ? "bg-[#a3262a] text-white" : ""} `} onClick={() => handleCategory("treo-tuong")}>Treo Tường</li>
+              <li class={`mr-5 border-2 py-2 px-5 cursor-pointer text-center shadow-lg ${category === "li-xi" ? "bg-[#a3262a] text-white" : ""} `} onClick={() => handleCategory("li-xi")}>Lì Xì</li>
              <li class={`mr-5 border-2 py-2 px-5 cursor-pointer text-center shadow-lg ${category === "day-treo-trung-quoc" ? "bg-[#a3262a] text-white" : ""} `} onClick={() => handleCategory("day-treo-trung-quoc")}>Dây Treo Trung Quốc</li>
              <li class={`mr-5 border-2 py-2 px-5 cursor-pointer text-center shadow-lg ${category === "day-treo-viet-nam" ? "bg-[#a3262a] text-white" : ""} `} onClick={() => handleCategory("day-treo-viet-nam")}>Dây treo Việt Nam</li>
-             <li class={`mr-5 border-2 py-2 px-5 cursor-pointer text-center shadow-lg ${category === "li-xi" ? "bg-[#a3262a] text-white" : ""} `} onClick={() => handleCategory("li-xi")}>Lì Xì</li>
+         <li class={`mr-5 border-2 py-2 px-5 cursor-pointer text-center shadow-lg ${category === "treo-tuong" ? "bg-[#a3262a] text-white" : ""} `} onClick={() => handleCategory("treo-tuong")}>Treo Tường</li>
           </ul>
           <div class="border-2 p-2 block md:hidden mt-5 w-[100%] md:max-w-[200px] text-center cursor-pointer font-bold border-[#000] shadow-lg" onClick={toggleMenu}>
             <p>Phân loại</p>
           </div> 
           <div class={`${modal ? "min-h-[200px] p-2 border-2 border-[#000]" : "h-[0px] p-0" } transition-height duration-300   overflow-hidden  shadow-lg mt-2 font-bold w-full  md:hidden block`}>
             <ul>
-            <li class={`mr-5 border-2 py-2 px-5 cursor-pointer text-center w-full shadow-lg mb-2 mt-2 ${category === "treo-tuong" ? "bg-[#a3262a] text-white" : ""} `} onClick={() => handleCategory("treo-tuong")}>Treo Tường</li>
+                <li class={`mr-5 border-2 py-2 px-5 cursor-pointer text-center w-full shadow-lg mb-2  ${category === "li-xi" ? "bg-[#a3262a] text-white" : ""} `} onClick={() => handleCategory("li-xi")}>Lì Xì</li>
              <li class={`mr-5 border-2 py-2 px-5 cursor-pointer text-center w-full shadow-lg mb-2  ${category === "day-treo-trung-quoc" ? "bg-[#a3262a] text-white" : ""} `} onClick={() => handleCategory("day-treo-trung-quoc")}>Dây Treo Trung Quốc</li>
              <li class={`mr-5 border-2 py-2 px-5 cursor-pointer text-center w-full shadow-lg mb-2  ${category === "day-treo-viet-nam" ? "bg-[#a3262a] text-white" : ""} `} onClick={() => handleCategory("day-treo-viet-nam")}>Dây treo Việt Nam</li>
-             <li class={`mr-5 border-2 py-2 px-5 cursor-pointer text-center w-full shadow-lg mb-2  ${category === "li-xi" ? "bg-[#a3262a] text-white" : ""} `} onClick={() => handleCategory("li-xi")}>Lì Xì</li>
+              <li class={`mr-5 border-2 py-2 px-5 cursor-pointer text-center w-full shadow-lg mb-2 mt-2 ${category === "treo-tuong" ? "bg-[#a3262a] text-white" : ""} `} onClick={() => handleCategory("treo-tuong")}>Treo Tường</li>
             </ul>
           </div>
           <div class="mt-5 border-2  border-[#000] md:w-[350px] w-[100%]  flex justify-between items-center">
@@ -149,7 +166,7 @@ const DisplayProducts = () => {
                             <div class="min-h-[100px]">
                              <p class="mt-2" >{product.category}</p>
                              <h1 class="font-bold ">{product.title}</h1>
-                             <p> <span class="font-bold">Mã sản phẩm: </span> {product.description}</p>
+                             <p> <span class="font-bold">Mã sản phẩm: </span> {product.codeProduct}</p>
                              <p><span class="font-bold"> Giá:</span>  Liên hệ</p>
                              </div>
                              <Link to={`/updateProduct/${product.slug}`}>
@@ -169,11 +186,36 @@ const DisplayProducts = () => {
                 
             }
           </div>
+          <div class="bg-[#a3262a] text-white flex justify-center p-2 shadow-lg max-w-[200px] absolute bottom-2 right-2 cursor-pointer" onClick={() => {setPopup(true)}}>
+             <p>Xóa hết sản phẩm</p>
+          </div>
+
         </div>
         <div class={`fixed  bottom-2 right-2 shadow-xl bg-[#a3262a] flex justify-center items-center w-[40px] h-[40px] rounded-full text-white cursor-pointer  `} onClick={scrollToTop}>
            <IoIosArrowUp class="text-[23px]" />
         </div>
+      {popUp ? (
+      <div class="bg-[#0004]  flex justify-center items-center  w-full fixed inset-0 z-50">
+                 
+      <div className="bg-white shadow-lg rounded-lg p-8 w-[500px]">
+        <h2 className="text-2xl font-semibold mb-4">Xác nhận xóa hết!</h2>
+        <p className="text-gray-700 mb-4">
+          Xóa hết sản phẩm hoặc quay lại
+        </p>
       
+      <div className="flex justify-between">
+         <button
+          className="bg-gray-300 text-gray-700 px-4 py-2 rounded hover:bg-gray-400 transition duration-300" onClick={() => {setPopup(false)}}>
+         Quay lại
+        </button>
+         <button
+        className="bg-[#5cb85c] text-white px-4 py-2 rounded hover:bg-green-600 transition duration-300" onClick={deleteAllProduct} >
+        Xác nhận
+         </button>
+      </div>
+</div>
+      </div>
+      ) : ""}
     </div>
     )}
 
