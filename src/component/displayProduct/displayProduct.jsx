@@ -19,7 +19,7 @@ const DisplayProducts = () => {
     const [searchProduct,setSearchProduct] = useState("");
     const [checkSearch,setCheckSearch] = useState(false);
     // main Api
-    const apiHaweb = `http://127.0.0.1:8000/api/product`;
+    const apiHaweb = `https://haweb-api.onrender.com/api/product`;
     useEffect(() => {
     const apiHawebcategory = `${apiHaweb}/category/${category}`;
     axios.get(`${apiHawebcategory}`)
