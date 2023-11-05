@@ -7,7 +7,7 @@ const Menu = () => {
     return (
         <div class="col-span-1 shadow-xl bg-white xl:block hidden">
           <div class="fixed top-0 left-0 ">
-          <h1 class="font-black p-5 text-[45px] text-[#a3262a]">Hà Shop</h1>
+          <h1 class="font-black p-5 text-[55px] text-[#a3262a]">Hà</h1>
          <div class="p-5 mt-5">
            <ul>
            <Link to="/" className={location.pathname === '/' ? 'text-[#a3262a] font-bold' : ''}> <li class="mb-4 font-medium text-[18px] flex cursor-pointer" > <AiOutlineHome class="mt-1 mr-2 text-[20px]"/>  Trang chủ </li>  </Link>

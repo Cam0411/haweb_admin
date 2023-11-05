@@ -74,7 +74,7 @@ const DisplayProducts = () => {
     };
    // Function to delete all products
 const deleteAllProduct = async (slug) => {
-  axios.delete(`http://127.0.0.1:8000/api/product`)
+  axios.delete(`https://haweb-api.onrender.com/api/product`)
   .then((response) => {
       if (response.status === 200) {
         // Product was deleted successfully, update the state
@@ -116,7 +116,7 @@ const deleteAllProduct = async (slug) => {
               <li class={`mr-5 border-2 py-2 px-5 cursor-pointer text-center shadow-lg ${category === "li-xi" ? "bg-[#a3262a] text-white" : ""} `} onClick={() => handleCategory("li-xi")}>Lì Xì</li>
              <li class={`mr-5 border-2 py-2 px-5 cursor-pointer text-center shadow-lg ${category === "day-treo-trung-quoc" ? "bg-[#a3262a] text-white" : ""} `} onClick={() => handleCategory("day-treo-trung-quoc")}>Dây Treo Trung Quốc</li>
              <li class={`mr-5 border-2 py-2 px-5 cursor-pointer text-center shadow-lg ${category === "day-treo-viet-nam" ? "bg-[#a3262a] text-white" : ""} `} onClick={() => handleCategory("day-treo-viet-nam")}>Dây treo Việt Nam</li>
-         <li class={`mr-5 border-2 py-2 px-5 cursor-pointer text-center shadow-lg ${category === "treo-tuong" ? "bg-[#a3262a] text-white" : ""} `} onClick={() => handleCategory("treo-tuong")}>Treo Tường</li>
+         <li class={`mr-5 border-2 py-2 px-5 cursor-pointer text-center shadow-lg ${category === "dan-tuong" ? "bg-[#a3262a] text-white" : ""} `} onClick={() => handleCategory("dan-tuong")}>Dán Tường</li>
           </ul>
           <div class="border-2 p-2 block md:hidden mt-5 w-[100%] md:max-w-[200px] text-center cursor-pointer font-bold border-[#000] shadow-lg" onClick={toggleMenu}>
             <p>Phân loại</p>
@@ -126,7 +126,7 @@ const deleteAllProduct = async (slug) => {
                 <li class={`mr-5 border-2 py-2 px-5 cursor-pointer text-center w-full shadow-lg mb-2  ${category === "li-xi" ? "bg-[#a3262a] text-white" : ""} `} onClick={() => handleCategory("li-xi")}>Lì Xì</li>
              <li class={`mr-5 border-2 py-2 px-5 cursor-pointer text-center w-full shadow-lg mb-2  ${category === "day-treo-trung-quoc" ? "bg-[#a3262a] text-white" : ""} `} onClick={() => handleCategory("day-treo-trung-quoc")}>Dây Treo Trung Quốc</li>
              <li class={`mr-5 border-2 py-2 px-5 cursor-pointer text-center w-full shadow-lg mb-2  ${category === "day-treo-viet-nam" ? "bg-[#a3262a] text-white" : ""} `} onClick={() => handleCategory("day-treo-viet-nam")}>Dây treo Việt Nam</li>
-              <li class={`mr-5 border-2 py-2 px-5 cursor-pointer text-center w-full shadow-lg mb-2 mt-2 ${category === "treo-tuong" ? "bg-[#a3262a] text-white" : ""} `} onClick={() => handleCategory("treo-tuong")}>Treo Tường</li>
+              <li class={`mr-5 border-2 py-2 px-5 cursor-pointer text-center w-full shadow-lg mb-2 mt-2 ${category === "dan-tuong" ? "bg-[#a3262a] text-white" : ""} `} onClick={() => handleCategory("dan-tuong")}>Dán Tường</li>
             </ul>
           </div>
           <div class="mt-5 border-2  border-[#000] md:w-[350px] w-[100%]  flex justify-between items-center">
@@ -154,7 +154,7 @@ const deleteAllProduct = async (slug) => {
           <div>
            {
                 products ? (
-                    <div class="grid grid-cols-1  md:grid-cols-3   xl:grid-cols-4 mt-5 ">
+                    <div class="grid grid-cols-1  md:grid-cols-3   xl:grid-cols-4 mt-5 mb-10">
                       {products.map((product) => (
                           <div key={product.id} class="cursor-pointer sm:ml-5 sm:mr-5 ml-0 mr-0 min-w-[200px] h-[auto] shadow-lg mt-5 mb-5 bg-white p-3 relative rounded overflow-hidden group border-2 border-[#f2f2f2]">
                             <div>
@@ -186,7 +186,7 @@ const deleteAllProduct = async (slug) => {
                 
             }
           </div>
-          <div class="bg-[#a3262a] text-white flex justify-center p-2 shadow-lg max-w-[200px] absolute bottom-2 right-2 cursor-pointer" onClick={() => {setPopup(true)}}>
+          <div class="bg-[#a3262a] text-white flex justify-center p-2 shadow-lg max-w-[200px] mt-5 absolute bottom-2 right-2 cursor-pointer" onClick={() => {setPopup(true)}}>
              <p>Xóa hết sản phẩm</p>
           </div>
 

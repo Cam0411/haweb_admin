@@ -79,8 +79,8 @@ const Mainpage =   () => {
          </div>
 
          <div class="bg-white rounded shadow-lg p-2  ml-2 mb-5">
-            <h1 class="font-bold">Treo Tường</h1>
-            <p class="text-[28px] font-bold"> {product ? (product.categoryLength.find((category) => category._id === 'treo-tuong')?.count || 0) : 0} </p>
+            <h1 class="font-bold">Dán Tường</h1>
+            <p class="text-[28px] font-bold"> {product ? (product.categoryLength.find((category) => category._id === 'dan-tuong')?.count || 0) : 0} </p>
          </div>
         </div>
         <div class=" sm:ml-5 sm:mr-5 ml-0 mr-0    grid grid-cols-5">
