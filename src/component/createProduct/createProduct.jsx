@@ -34,7 +34,11 @@ const CreateProductContent = () => {
         e.preventDefault();
     
         try {
-            const response = await axios.post(`${apiHaweb}`, productData); // Send a POST request to your backend route
+            const response = await axios.post(`${apiHaweb}`, {
+            ...productData,
+            description: productData.description.replace(/\n/g, "<br></br>"),
+
+            }); // Send a POST request to your backend route
             setError(false)  
         } catch (err) {
             if (err.response && err.response.status === 404) {
@@ -42,7 +46,15 @@ const CreateProductContent = () => {
             } 
           }
       };
-   
+      // const handleKeyPress = (event) => {
+      //   if (event.key === 'Enter') {
+      //     // Prevent the default Enter key behavior
+      //     event.preventDefault();
+    
+      //     // Replace Enter key with \n in the description
+      //     setDescription(description + '\n');
+      //   }
+      // };
     return (
         <div class="col-span-5 xl:col-span-4 p-3  mt-[150px] xl:mt-0 h-auto">
         <div class="bg-white shadow-xl h-[50px] sm:ml-5 sm:mr-5 ml-0 rounded-lg flex justify-between items-center p-2">

@@ -2,18 +2,19 @@ import {AiOutlineSearch,AiOutlineBell} from "react-icons/ai"
 import { useState,useEffect } from "react";
 import axios from "axios"
 import { useParams } from 'react-router-dom';
-
+import  unidecode  from 'unidecode';
 
 function generateSlug(title) {
     // Remove special characters, spaces, and convert to lowercase
     if (title) {
         // Remove special characters, spaces, and convert to lowercase
-        return title
-            .replace(/[^\w\s-]/g, '')
-            .split(' ')
-            .filter((word) => word) // Remove empty strings
-            .join('-')
-            .toLowerCase();
+     const slug = unidecode(title)
+      .replace(/[^\w\s-]/g, '') // Remove special characters
+      .split(' ')
+      .filter((word) => word) // Remove empty strings
+      .join('-')
+      .toLowerCase();
+      return slug;
     } 
     // Handle the case where title is undefined
 // or another default value
@@ -29,8 +30,13 @@ const UpdateProducts = () => {
      
       const handleChange = (e) => {
         const newSlug = generateSlug(productData.title);
+       
         const { name, value } = e.target;
-        setProductData({ ...productData, [name]: value,slug:newSlug });
+        let newCategorySlug = productData.categorySlug; // Initialize newCategorySlug with the current value
+        if (name === 'category') {
+          newCategorySlug = generateSlug(value); // Update newCategorySlug when the category input changes
+        }
+        setProductData({ ...productData, [name]: value,slug:newSlug, categorySlug:newCategorySlug });
       }
      const openModal = () => {
         
@@ -44,7 +50,7 @@ const UpdateProducts = () => {
     //   set up product 
     const handleSubmit = async (e) => {
         e.preventDefault();
-    
+        setModal(true);
         try {
             const response = await axios.put(`${apiHaweb}`, productData); // Send a POST request to your backend route
             setError(false)  
@@ -168,10 +174,10 @@ const UpdateProducts = () => {
         <div className="mt-10 mb-5">
           <button
             type="submit"
-            onClick={ openModal}
+            onClick={handleSubmit}
             className="bg-[#b5262a] text-white py-2 px-4 rounded font-bold  focus:outline-none shadow-lg"
           >
-            Tạo sản phẩm
+            Cập nhật sản phẩm
           </button>
         </div>
       </form>

@@ -5,7 +5,7 @@ const Menu = () => {
   const [category,setCategory] = useState(1);
   const location = useLocation();
     return (
-        <div class="col-span-1 shadow-xl bg-white xl:block hidden">
+        <div class="col-span-1 shadow-xl bg-white xl:block hidden border-2">
           <div class="fixed top-0 left-0 ">
           <h1 class="font-black p-5 text-[55px] text-[#a3262a]">Hà</h1>
          <div class="p-5 mt-5">

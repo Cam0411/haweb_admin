@@ -87,10 +87,13 @@ const deleteAllProduct = async (slug) => {
       console.error('Error deleting product:', error);
     });
 };
-
+const handleDisplayDescription = (description) => {
+  // Convert <br> elements back to \n for displaying line breaks
+  return description.replace(/<br\s*\/?>/g, "\n");
+};
 
     return (
-        <div class="col-span-5 xl:col-span-4 p-3 h-auto  mt-[150px] xl:mt-0">
+        <div class="col-span-5 xl:col-span-4 p-0 md:p-3 h-auto  mt-[150px] xl:mt-0">
        
         <div class="bg-white shadow-xl h-[50px] sm:ml-5 sm:mr-5 ml-0 rounded-lg flex justify-between items-center p-2">
             <div class="w-[50%] flex justify-center">
@@ -154,14 +157,14 @@ const deleteAllProduct = async (slug) => {
           <div>
            {
                 products ? (
-                    <div class="grid grid-cols-1  md:grid-cols-3   xl:grid-cols-4 mt-5 mb-10">
+                    <div class="grid grid-cols-2  md:grid-cols-3 gap-3  xl:grid-cols-4 mt-5 mb-10">
                       {products.map((product) => (
-                          <div key={product.id} class="cursor-pointer sm:ml-5 sm:mr-5 ml-0 mr-0 min-w-[200px] h-[auto] shadow-lg mt-5 mb-5 bg-white p-3 relative rounded overflow-hidden group border-2 border-[#f2f2f2]">
+                          <div key={product.id} class="cursor-pointer text-[14px] max-w-[300px] h-[auto] shadow-lg mt-5 mb-5 bg-white p-3 relative rounded overflow-hidden group border-2 border-[#f2f2f2]">
                             <div>
                             <LazyLoadImage
                              alt={product.photo}
                             src={product.photo} // use normal <img> attributes as props
-                            class="mt-2 max-w-[150px] ml-auto mr-auto"
+                            class="mt-2 w-full ml-auto mr-auto"
                              />
                             <div class="min-h-[100px]">
                              <p class="mt-2" >{product.category}</p>
@@ -170,7 +173,7 @@ const deleteAllProduct = async (slug) => {
                              <p><span class="font-bold"> Giá:</span>  Liên hệ</p>
                              </div>
                              <Link to={`/updateProduct/${product.slug}`}>
-                             <div class="absolute top-0 left-0 px-2 py-2  translate-x-[-100%] group-hover:translate-x-[0] duration-300 cursor-pointer bg-[#a3262a] text-white shadow-lg"> 
+                             <div class="absolute top-0 left-0 px-2 py-2  translate-x-[-110%] group-hover:translate-x-[0] duration-300 cursor-pointer bg-[#a3262a] text-white shadow-lg"> 
                               <HiOutlinePencil class=""/>
                             </div>
                             </Link>
