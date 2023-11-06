@@ -157,9 +157,9 @@ const handleDisplayDescription = (description) => {
           <div>
            {
                 products ? (
-                    <div class="grid grid-cols-2  md:grid-cols-3 gap-3  xl:grid-cols-4 mt-5 mb-10">
+                    <div class="grid grid-cols-2  md:grid-cols-3 gap-1  xl:grid-cols-4 2xl:grid-cols-5 mt-5 mb-10">
                       {products.map((product) => (
-                          <div key={product.id} class="cursor-pointer text-[14px] max-w-[300px] h-[auto] shadow-lg mt-5 mb-5 bg-white p-3 relative rounded overflow-hidden group border-2 border-[#f2f2f2]">
+                          <div key={product.id} class="cursor-pointer ml-auto mr-auto text-[14px] max-w-[300px] h-[auto] shadow-lg mt-5 mb-5 bg-white p-3 relative rounded overflow-hidden group border-2 border-[#f2f2f2]">
                             <div>
                             <LazyLoadImage
                              alt={product.photo}
