@@ -10,10 +10,11 @@ const Menu = () => {
           <h1 class="font-black p-5 text-[55px] text-[#a3262a]">Hà</h1>
          <div class="p-5 mt-5">
            <ul>
-           <Link to="/" className={location.pathname === '/' ? 'text-[#a3262a] font-bold' : ''}> <li class="mb-4 font-medium text-[18px] flex cursor-pointer" > <AiOutlineHome class="mt-1 mr-2 text-[20px]"/>  Trang chủ </li>  </Link>
+             <Link to="/" className={location.pathname === '/' ? 'text-[#a3262a] font-bold' : ''}> <li class="mb-4 font-medium text-[18px] flex cursor-pointer" > <AiOutlineHome class="mt-1 mr-2 text-[20px]"/>  Trang chủ </li>  </Link>
              <Link to="/displayProduct" className={location.pathname === '/displayProduct' ? 'text-[#a3262a] font-bold' : ''}> <li class="mb-4 font-medium text-[18px]">Xem trang sản phẩm</li> </Link>  
-               <Link to="/createProduct" className={location.pathname === '/createProduct' ? 'text-[#a3262a] font-bold' : ''}>  <li class="mb-4 font-medium text-[18px]"> Tạo sản phẩm</li></Link> 
-               <li class="mb-4 font-medium text-[18px]" >Thống kê</li>
+             <Link to="/displayBlog" className={location.pathname === '/displayBlog' ? 'text-[#a3262a] font-bold' : ''}> <li class="mb-4 font-medium text-[18px]">Xem trang nội dung</li> </Link>  
+             <Link to="/createProduct" className={location.pathname === '/createProduct' ? 'text-[#a3262a] font-bold' : ''}>  <li class="mb-4 font-medium text-[18px]"> Tạo sản phẩm</li></Link> 
+              <Link to="/blog" className={location.pathname === '/blog' ? 'text-[#a3262a] font-bold' : ''}>  <li class="mb-4 font-medium text-[18px]" >Tạo Nội dung</li> </Link>
            </ul>
         </div>
           </div>
