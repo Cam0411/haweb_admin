@@ -6,14 +6,24 @@ import '../../asset/blog.css'
 import ReactQuill from 'react-quill';
 import axios from "axios"
 
-const apiHaweb = 'http://127.0.0.1:8000/api/blog';
+const apiHaweb = 'https://haweb-api.onrender.com/api/blog';
 const PostBlog = () => {
     
   const [blogData, setBlogData] = useState({
     title: '',
     content: '',
     photo: '',
+    keyword:'',
+    destription:'',
   });
+  const [modal,setModal] = useState(false)
+  const openModal = () => {
+    setModal(true)
+  }
+  const closeModal = () => {
+    setModal(false)
+ }
+
   const reactQuillRef = useRef();
   const handleContentChange = (content) => {
     setBlogData({ ...blogData, content });
@@ -30,7 +40,7 @@ const PostBlog = () => {
     try {
       // Make a POST request using Axios
       const response = await axios.post(apiHaweb, { ...blogData });
-
+      setModal(true)
       // Handle success
       if (response.status === 201) {
         console.log('Data posted successfully');
@@ -91,6 +101,7 @@ const PostBlog = () => {
       throw error;
     }
   };
+
   const modules={
       
         toolbar: {
@@ -175,6 +186,32 @@ const PostBlog = () => {
             className="w-full px-2 py-2 border rounded-md"
           />
         </div>
+        <div className="mb-4">
+          <label htmlFor="keyword" className="block font-medium mb-2">
+            Từ Khóa 
+          </label>
+          <input
+            type="text"
+            id="keyword"
+            name="keyword"
+            value={blogData.keyword}
+            onChange={handleChange}
+            className="w-full px-2 py-2 border rounded-md"
+          />
+        </div>
+        <div className="mb-4">
+          <label htmlFor="destription" className="block font-medium mb-2">
+             Thông tin web
+          </label>
+          <input
+            type="text"
+            id="destription"
+            name="destription"
+            value={blogData.destription}
+            onChange={handleChange}
+            className="w-full px-2 py-2 border rounded-md"
+          />
+        </div>
         <div className="min-h-[500px]">
           <ReactQuill
             theme="snow"
@@ -187,7 +224,7 @@ const PostBlog = () => {
         </div>  
         <button
             type="submit"
-            onClick={handleSubmit}
+            onClick={openModal}
             className="bg-[#b5262a] mt-2 text-white py-2 px-4 rounded font-bold  focus:outline-none shadow-lg"
           >
             Tạo Nội dung
@@ -195,7 +232,7 @@ const PostBlog = () => {
         
        
       </form>
-      {/* {modal ? (
+      {modal ? (
            <div class="fixed bg-[#0004] inset-0 h-full flex justify-center items-center">
            <div className="bg-white p-10 rounded-lg shadow-md">
              <h2 className="text-[28px] font-bold mb-2">Sản phẩm tạo thành công</h2>
@@ -211,7 +248,7 @@ const PostBlog = () => {
            </div>
       ) : ""}
             
-        <p>{error}</p> */}
+        
         </div>
        </div>
     )
